@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Vue-Router</title>
+    <script src="day05/js/vue.min.js"></script>
+    <script src="day05/js/vue-router.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #8e9fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: #6c7ecb;
+        }
+
+        .section {
+            text-align: center;
+            font-size: 50px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+      
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="navigation">
+        <router-link class="nav-link f1" to="/f1">待付款</router-link>
+        <router-link class="nav-link f2" to="/f2">待发货</router-link>
+        <router-link class="nav-link f3" to="/f3">待收货</router-link>
+    </div>
+    <router-view></router-view>
+</div>
+<script>
+    // 搭建
+    // 2个组件
+    const F1 = {
+        template: "<div class='section f1'>待付款</div>"
+    }
+    const F2 = {
+        template: "<div class='section f2'>待发货</div>"
+    }
+    const F3 = {
+        template: "<div class='section f3'>待收货</div>"
+    }
+    //定义路由
+    const routers = [
+        {
+            path: "/f1",
+            component: F1
+        },
+        {
+            path: "/f2",
+            component: F2
+        },
+        {
+            path: "/f3",
+            component: F3
+        }
+    ]
+
+    //创建路由
+    const router = new VueRouter({
+        //绑定
+        routes: routers
+    })
+    //将路由
+    new Vue({
+        el: "#app",
+        router
+    })
+
+
+</script>
+</body>
+</html>
